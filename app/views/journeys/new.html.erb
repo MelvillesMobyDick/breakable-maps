@@ -1,0 +1,20 @@
+<h1>Record Your Journey!</h1>
+
+<%= form_for(@journey) do |f| %>
+  <%= f.label :origin %>
+  <%= f.text_field :origin %>
+
+  <%= f.label :destination %>
+  <%= f.text_field :destination %>
+
+  <%= f.label :travel_time %>
+  <%= f.text_field :travel_time %>
+
+  <%= f.submit 'Submit' %>
+<% end %>
+
+
+ <br /><br />
+
+ <br /><br />
+<%= link_to "All Journeys", journeys_path %>

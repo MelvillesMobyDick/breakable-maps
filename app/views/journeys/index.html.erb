@@ -1,0 +1,11 @@
+<ul>
+  <% @journeys.each do |journey| %>
+    <li>
+      <%= link_to journey.origin, journey_path(journey) %>
+      <%= journey.destination %>
+      <%= journey.travel_time %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add New Journey", new_journey_path %>
