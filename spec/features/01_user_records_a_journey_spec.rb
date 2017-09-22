@@ -5,8 +5,16 @@ require 'rails_helper'
 #When adding a new journey, if I fill out the form correctly, I should see a page that tells me whether I am smarter than google maps and allows me to make comments.
 #When adding a new journey, if I fill out the form incorrectly and submit the form, I should see the form and be displayed the validation errors.
 
-
 feature "User adds journey" do
+  before(:each) do
+    visit root_path
+    click_link 'Sign Up'
+    fill_in 'Email', with: "test@gmail.com"
+    fill_in 'Password', with: "password"
+    fill_in 'Password confirmation', with: "password"
+    click_button 'Sign up'
+  end
+
   scenario "User adds journey successfully" do
     visit new_journey_path
     expect(page).to have_content "Record Your Journey!"

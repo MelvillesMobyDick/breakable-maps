@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations'
+  }
 
   root "journeys#new"
+
+  namespace :api do
+    namespace :v1 do
+      resources :journeys, only: [:show]
+    end
+  end
 
   resources :journeys, only: [:new, :create, :index, :show, :destroy]
 end
