@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_many :journeys 
+  has_many :journeys
+  has_many :comments
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
