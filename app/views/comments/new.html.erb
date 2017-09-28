@@ -1,0 +1,22 @@
+<head>
+<style>
+body {
+    background-color: #E6E6E6;
+}
+</style>
+
+</head>
+
+
+<h3>Add a comment!</h3>
+
+
+<%= form_for([@journey, @comment]) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+
+  <%= f.submit 'Submit' %>
+<% end %>

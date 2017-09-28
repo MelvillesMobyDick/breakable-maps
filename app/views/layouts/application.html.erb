@@ -11,7 +11,7 @@
   <body>
     <div>
       <% if user_signed_in? %>
-        <a href='#'>Sign Out</a>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "menuText" %>
       <% else %>
         <a href='/users/sign_up'>Sign Up</a>
       <% end %>

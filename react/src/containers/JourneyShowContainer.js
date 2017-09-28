@@ -5,7 +5,10 @@ class JourneyShowContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      journeys: null
+      journey: null,
+      trip: null,
+      travelTime: null,
+      message: ""
     }
   }
 
@@ -15,18 +18,36 @@ class JourneyShowContainer extends Component {
       let parsed = response.json()
       return parsed
     }).then(body => {
-      this.setState({ journeys: body })
+      this.setState({ journey: body.journey, trip: body.trip, travelTime: body.travel_time})
     })
   }
 
   render() {
-    let duration
-    if (this.state.journeys !== null){
-      duration = this.state.journeys.routes[0].legs[0].duration.text
+    let mapsDuration
+    if (this.state.trip !== null){
+      mapsDuration = this.state.trip.routes[0].legs[0].duration.value
     }
+
+    let durationText
+    if (this.state.trip !== null){
+      durationText = this.state.trip.routes[0].legs[0].duration.text
+    }
+
+    let yourDuration
+    if (this.state.journey !== null){
+      yourDuration = this.state.travelTime
+    }
+
+    if (mapsDuration > yourDuration) {
+      this.state.message = "You're smarter"
+    } else {
+      this.state.message = "You're dumber"
+    }
+
     return(
       <div>
-        <p>{duration}</p>
+        <p>Maps Travel time: {durationText}</p>
+        <p>{this.state.message}</p>
       </div>
     )
   }

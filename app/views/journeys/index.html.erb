@@ -1,9 +1,19 @@
+<head>
+<style>
+body {
+    background-color: #E6E6E6;
+}
+</style>
+</head>
+
+
 <ul>
   <% @journeys.each do |journey| %>
     <li>
       <%= link_to journey.origin, journey_path(journey) %>
       <%= journey.destination %>
-      <%= journey.travel_time %>
+      <%= journey.hours %>
+      <%= journey.minutes %>
     </li>
   <% end %>
 </ul>

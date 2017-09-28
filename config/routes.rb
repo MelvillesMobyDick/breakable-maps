@@ -13,5 +13,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :journeys, only: [:new, :create, :index, :show, :destroy]
+  resources :journeys, only: [:new, :create, :index, :show, :destroy] do
+    resources :comments, only: [:new, :create, :index, :show, :destroy]
+  end
+
+
 end

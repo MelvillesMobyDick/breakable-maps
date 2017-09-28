@@ -1,3 +1,12 @@
+<head>
+<style>
+body {
+    background-color: #E6E6E6;
+}
+</style>
+
+</head>
+
 <%= link_to "Record Another Journey", new_journey_path %>
 
 
@@ -6,8 +15,20 @@
 
 <p>Origin: <%= @journey.origin %></p>
 <p>Destination: <%= @journey.destination %></p>
-<p>Travel time: <%= @journey.travel_time %></p>
+<p>Your Travel time: <%= @journey.hours%>: <%=@journey.minutes%></p>
+
+<%= link_to "Add a comment", new_journey_comment_path(@journey) %>
 
 
 <div id="app">
 </div>
+
+<h3>Comments</h3>
+<ul>
+<% @comments.each do |comment| %>
+  <li>
+    <%= comment.name %>
+    <%= comment.body %>
+  </li>
+<% end %>
+</ul>

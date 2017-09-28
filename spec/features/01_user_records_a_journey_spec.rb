@@ -17,15 +17,15 @@ feature "User adds journey" do
 
   scenario "User adds journey successfully" do
     visit new_journey_path
-    expect(page).to have_content "Record Your Journey!"
+    expect(page).to have_content "Record your journey"
 
     fill_in 'Origin', with: "Boston"
     fill_in 'Destination', with: "Philadelphia"
-    fill_in 'Travel time', with: "2 hours"
+    fill_in 'Hours', with: "2"
+    fill_in 'Minutes', with: "20"
 
     click_button "Submit"
 
-    expect(page).to have_content "You're smarter than Google Maps"
     expect(page).to have_content "Record Another Journey"
     expect(page).to have_content "See All Journeys"
   end
@@ -36,6 +36,5 @@ feature "User adds journey" do
     click_button "Submit"
     expect(page).to have_content "Origin can't be blank"
     expect(page).to have_content "Destination can't be blank"
-    expect(page).to have_content "Travel time can't be blank"
   end
 end

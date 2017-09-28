@@ -4,14 +4,14 @@ class JourneysController < ApplicationController
 
   def new
     @journey = Journey.new
+    @comments = @journey.comments
   end
 
   def create
     @journey = Journey.new(journey_params)
     @journey.user = current_user
     if @journey.save
-      flash[:notice] = "You're smarter than Google Maps!"
-      redirect_to journey_path(@journey)
+      redirect_to journey_path(@journey, @comment)
     else
       flash[:notice] = @journey.errors.full_messages.join(', ')
       render :new
@@ -24,13 +24,13 @@ class JourneysController < ApplicationController
 
   def show
     @journey = Journey.find(params[:id])
-    trip = HTTParty.get("https://maps.googleapis.com/maps/api/directions/json?origin=#{@journey.origin}&destination=#{@journey.destination}&mode=transit&key=AIzaSyAqy98vCg9Hrp2qDHNI_7KWUOoAYCVcYTQ")
+    @comments = @journey.comments
   end
 
   private
 
   def journey_params
-    params.require(:journey).permit(:origin, :destination, :travel_time)
+    params.require(:journey).permit(:origin, :destination, :hours, :minutes, :user_id)
   end
 
 end
